@@ -13,9 +13,18 @@ class Light extends StatelessWidget {
       angle: angle,
       child: Transform.translate(
         offset: const Offset(0, -100),
-        child: const CircleAvatar(
-          backgroundColor: Color.fromARGB(255, 255, 17, 0),
-          radius: 8,
+        child: Container(
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10, color: Color.fromARGB(255, 255, 247, 12))
+            ],
+          ),
+          child: const CircleAvatar(
+            backgroundColor: Color.fromARGB(255, 255, 248, 53),
+            radius: 8,
+          ),
         ),
       ),
     );

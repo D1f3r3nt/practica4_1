@@ -3,9 +3,8 @@ import 'package:practica4_1/pages/home_page.dart';
 import 'package:practica4_1/provider/time_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Duration(seconds: 4);
   runApp(const AppState());
 }
 
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
       },
+      theme: ThemeData(fontFamily: 'Future'),
     );
   }
 }

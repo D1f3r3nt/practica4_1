@@ -21,9 +21,14 @@ class Pointer extends StatelessWidget {
               height: (hour) ? 50 : 80,
               width: 4,
               decoration: BoxDecoration(
-                color: hour ? Colors.black87 : Colors.grey[400],
-                borderRadius: BorderRadius.circular(32),
-              ),
+                  color: hour ? Colors.grey[500] : Colors.white70,
+                  borderRadius: BorderRadius.circular(32),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 8,
+                      color: (hour ? Colors.grey[200] : Colors.white)!,
+                    ),
+                  ]),
             ),
           ),
         ),

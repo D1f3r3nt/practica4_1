@@ -14,7 +14,16 @@ class ClockTime extends StatelessWidget {
         padding: EdgeInsets.only(top: height * 0.2),
         child: Text(
           '${_hour(context)}:${_minute(context)}',
-          style: const TextStyle(fontSize: 40),
+          style: const TextStyle(
+              fontSize: 40,
+              color: Colors.white70,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                Shadow(
+                  color: Colors.white,
+                  blurRadius: 8,
+                ),
+              ]),
         ),
       ),
     );
