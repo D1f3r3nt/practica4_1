@@ -11,13 +11,14 @@ class ClockTime extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: EdgeInsets.only(top: height * 0.2),
+        padding: EdgeInsets.only(top: height * 0.1),
         child: Text(
           '${_hour(context)}:${_minute(context)}',
           style: const TextStyle(
               fontSize: 40,
               color: Colors.white70,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Future',
               shadows: [
                 Shadow(
                   color: Colors.white,

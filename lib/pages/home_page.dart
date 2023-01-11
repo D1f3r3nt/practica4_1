@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica4_1/provider/alarm_notification.dart';
 import 'package:practica4_1/provider/time_provider.dart';
 import 'package:practica4_1/widgets/clock_time.dart';
 import 'package:provider/provider.dart';
@@ -7,15 +8,25 @@ import '../widgets/clock.dart';
 import '../widgets/draggable_bottom.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 55, 36, 165),
+        shadowColor: const Color.fromARGB(255, 55, 36, 165),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+            color: Colors.white70,
+          )
+        ],
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
+            begin: Alignment.topCenter,
             end: Alignment.bottomRight,
             stops: [0.2, 0.4, 0.8],
             colors: [

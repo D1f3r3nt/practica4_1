@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:practica4_1/provider/time_provider.dart';
+import 'package:practica4_1/widgets/alarm.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/alarm_notification.dart';
 import 'new-time.dart';
 
 class DraggableBottom extends StatelessWidget {
@@ -31,11 +33,16 @@ class DraggableBottom extends StatelessWidget {
                 ),
               ),
               child: Scrollbar(
+                trackVisibility: false,
+                thumbVisibility: false,
                 child: ListView.builder(
                   controller: scrollController,
                   itemCount: provider.times.length + 1,
                   itemBuilder: (context, index) {
-                    return NewTime(provider: provider);
+                    if (provider.times.length == index) {
+                      return NewTime(provider: provider);
+                    }
+                    return Alarm(index: index);
                   },
                 ),
               ),

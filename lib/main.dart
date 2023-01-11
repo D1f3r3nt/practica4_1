@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:practica4_1/pages/home_page.dart';
+import 'package:practica4_1/preferences/preferences.dart';
 import 'package:practica4_1/provider/time_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
   runApp(const AppState());
 }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
       },
-      theme: ThemeData(fontFamily: 'Future'),
+      theme: ThemeData(fontFamily: 'TextFuture'),
     );
   }
 }
