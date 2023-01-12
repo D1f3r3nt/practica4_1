@@ -1,0 +1,9 @@
+export 'package:practica4_1/widgets/alarm_widget.dart';
+export 'package:practica4_1/widgets/clock.dart';
+export 'package:practica4_1/widgets/clock_time.dart';
+export 'package:practica4_1/widgets/custom_feedback.dart';
+export 'package:practica4_1/widgets/draggable_bottom.dart';
+export 'package:practica4_1/widgets/info_discovery.dart';
+export 'package:practica4_1/widgets/light.dart';
+export 'package:practica4_1/widgets/new-time.dart';
+export 'package:practica4_1/widgets/pointer.dart';

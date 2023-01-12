@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/alarm_notification.dart';
-import '../provider/time_provider.dart';
+import '../providers/providers.dart';
 
 class AlarmWidget extends StatefulWidget {
   AlarmWidget({

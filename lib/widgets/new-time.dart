@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practica4_1/models/alarms_data.dart';
-import 'package:practica4_1/provider/alarm_notification.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/time_provider.dart';
+import '../models/models.dart';
+import '../providers/providers.dart';
 
 class NewTime extends StatelessWidget {
   const NewTime(

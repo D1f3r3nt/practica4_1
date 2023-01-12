@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practica4_1/provider/time_provider.dart';
-import 'package:provider/provider.dart';
 
-import 'light.dart';
-import 'pointer.dart';
+import '../providers/providers.dart';
+import 'widgets.dart';
 
 class Clock extends StatelessWidget {
   const Clock({

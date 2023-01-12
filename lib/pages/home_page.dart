@@ -1,15 +1,10 @@
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:practica4_1/preferences/preferences.dart';
-import 'package:practica4_1/provider/time_provider.dart';
-import 'package:practica4_1/widgets/clock_time.dart';
-import 'package:practica4_1/widgets/info_discovery.dart';
-import 'package:provider/provider.dart';
 
-import '../widgets/clock.dart';
-import '../widgets/custom_feedback.dart';
-import '../widgets/draggable_bottom.dart';
+import '../preferences/preferences.dart';
+import '../providers/providers.dart';
+import '../widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   @override

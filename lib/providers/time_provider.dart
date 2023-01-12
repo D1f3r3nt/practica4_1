@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practica4_1/models/alarms_data.dart';
-import 'package:practica4_1/preferences/preferences.dart';
+
+import '../models/models.dart';
+import '../preferences/preferences.dart';
 
 class TimeProvider extends ChangeNotifier {
   DateTime _currentTime;

@@ -1,13 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:practica4_1/provider/time_provider.dart';
-import 'package:practica4_1/widgets/alarm_widget.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/alarm_notification.dart';
-import 'info_discovery.dart';
-import 'new-time.dart';
+import '../providers/providers.dart';
+import 'widgets.dart';
 
 class DraggableBottom extends StatelessWidget {
   const DraggableBottom({

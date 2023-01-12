@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:practica4_1/provider/time_provider.dart';
-import 'package:provider/provider.dart';
+
+import '../providers/providers.dart';
 
 class ClockTime extends StatelessWidget {
   const ClockTime({super.key});

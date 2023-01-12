@@ -5,7 +5,8 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
-import 'package:practica4_1/models/alarms_data.dart';
+
+import '../models/models.dart';
 
 class AlarmNotification extends ChangeNotifier {
   static final _alarmNotification = FlutterLocalNotificationsPlugin();

@@ -1,10 +1,9 @@
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
-import 'package:practica4_1/pages/home_page.dart';
-import 'package:practica4_1/preferences/preferences.dart';
-import 'package:practica4_1/provider/alarm_notification.dart';
-import 'package:practica4_1/provider/time_provider.dart';
-import 'package:provider/provider.dart';
+
+import 'pages/pages.dart';
+import 'preferences/preferences.dart';
+import 'providers/providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
