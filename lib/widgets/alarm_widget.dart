@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:practica4_1/models/alarms_data.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/alarm_notification.dart';
 import '../provider/time_provider.dart';
 
-class Alarm extends StatefulWidget {
-  Alarm({
+class AlarmWidget extends StatefulWidget {
+  AlarmWidget({
     Key? key,
     required this.index,
   }) : super(key: key);
@@ -14,10 +15,10 @@ class Alarm extends StatefulWidget {
   final int index;
 
   @override
-  State<Alarm> createState() => _AlarmState();
+  State<AlarmWidget> createState() => _AlarmWidgetState();
 }
 
-class _AlarmState extends State<Alarm> {
+class _AlarmWidgetState extends State<AlarmWidget> {
   final AlarmNotification notification = AlarmNotification();
 
   @override
@@ -32,24 +33,30 @@ class _AlarmState extends State<Alarm> {
           provider.times[widget.index].timeFormatted,
           style: const TextStyle(color: Colors.white70, fontFamily: 'Future'),
         ),
-        leading: const Icon(
-          Icons.access_time_outlined,
-          color: Colors.white70,
-        ),
+        leading: (provider.times[widget.index].enable)
+            ? const Icon(
+                Icons.access_time_outlined,
+                color: Colors.white70,
+              )
+            : const Icon(
+                FontAwesomeIcons.trashCan,
+                color: Colors.white70,
+              ),
         trailing: Switch(
           value: provider.times[widget.index].enable,
           activeColor: const Color.fromARGB(255, 255, 248, 53),
           inactiveThumbColor: const Color.fromARGB(255, 11, 11, 44),
           onChanged: (value) async {
-            await notification.showNotification(
-              id: 0,
-              body: 'Hola',
-              title: 'Hola Mundo',
-            );
             setState(() {
               provider.times[widget.index].enable = value;
               provider.save();
             });
+            if (value) {
+              notification.setAlarm(alarmsData: provider.times[widget.index]);
+            } else {
+              notification.removeAlarm(
+                  alarmsData: provider.times[widget.index]);
+            }
           },
         ),
       ),

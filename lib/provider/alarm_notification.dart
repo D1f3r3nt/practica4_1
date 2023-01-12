@@ -1,23 +1,23 @@
 import 'dart:async';
+import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
-import 'package:rxdart/subjects.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
+import 'package:practica4_1/models/alarms_data.dart';
 
-class AlarmNotification {
-  AlarmNotification();
-
-  final _alarmNotification = FlutterLocalNotificationsPlugin();
+class AlarmNotification extends ChangeNotifier {
+  static final _alarmNotification = FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
-    final AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings('@drawable/ic_notify_icon');
+    AndroidAlarmManager.initialize();
 
-    final DarwinInitializationSettings darwinInitializationSettings =
-        DarwinInitializationSettings(
+    AndroidInitializationSettings androidInitializationSettings =
+        const AndroidInitializationSettings('@drawable/ic_notify_icon');
+
+    DarwinInitializationSettings darwinInitializationSettings =
+        const DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
@@ -30,7 +30,7 @@ class AlarmNotification {
     await _alarmNotification.initialize(settings);
   }
 
-  Future<NotificationDetails> _notifoicationDetails() async {
+  static Future<NotificationDetails> _notifoicationDetails() async {
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
       'channel_id',
@@ -40,10 +40,12 @@ class AlarmNotification {
       priority: Priority.high,
       ticker: 'ticker',
       additionalFlags: Int32List.fromList(<int>[4]),
+      colorized: true,
+      color: const Color.fromARGB(255, 11, 11, 44),
     );
 
     DarwinNotificationDetails darwinNotificationDetails =
-        DarwinNotificationDetails();
+        const DarwinNotificationDetails();
 
     return NotificationDetails(
       android: androidNotificationDetails,
@@ -51,16 +53,56 @@ class AlarmNotification {
     );
   }
 
-  Future<void> showNotification({
+  static void _showNotification({
     required int id,
     required String title,
     required String body,
   }) async {
     final details = await _notifoicationDetails();
     await _alarmNotification.show(id, title, body, details);
+  }
+
+  setAlarm({required AlarmsData alarmsData}) async {
+    await AndroidAlarmManager.oneShotAt(
+      getTime(alarmsData.time),
+      alarmsData.id,
+      play,
+      allowWhileIdle: true,
+      exact: true,
+      alarmClock: true,
+      wakeup: true,
+    );
+  }
+
+  removeAlarm({required AlarmsData alarmsData}) async {
+    await AndroidAlarmManager.cancel(alarmsData.id);
+  }
+
+  DateTime getTime(TimeOfDay timeOfDay) {
+    DateTime _now = DateTime.now();
+    if (_now.hour > timeOfDay.hour ||
+        (_now.hour == timeOfDay.hour && _now.minute >= timeOfDay.minute)) {
+      _now = _now.add(const Duration(days: 1));
+    }
+    return DateTime(
+      _now.year,
+      _now.month,
+      _now.day,
+      timeOfDay.hour,
+      timeOfDay.minute,
+    );
+  }
+
+  static void play() {
     FlutterRingtonePlayer.playAlarm(volume: 0.5, looping: false);
     Timer(const Duration(seconds: 10), () {
       FlutterRingtonePlayer.stop();
     });
+
+    _showNotification(
+      id: 0,
+      title: 'Alarma',
+      body: 'Tal y como has programado se esta ejecutando la alarma',
+    );
   }
 }

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:practica4_1/provider/time_provider.dart';
-import 'package:practica4_1/widgets/alarm.dart';
+import 'package:practica4_1/widgets/alarm_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/alarm_notification.dart';
@@ -16,6 +16,9 @@ class DraggableBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimeProvider>(context);
+    final _alarmProvider =
+        Provider.of<AlarmNotification>(context, listen: false);
+
     return DraggableScrollableSheet(
       initialChildSize: 0.2,
       minChildSize: 0.2,
@@ -40,9 +43,12 @@ class DraggableBottom extends StatelessWidget {
                   itemCount: provider.times.length + 1,
                   itemBuilder: (context, index) {
                     if (provider.times.length == index) {
-                      return NewTime(provider: provider);
+                      return NewTime(
+                        provider: provider,
+                        alarmNotification: _alarmProvider,
+                      );
                     }
-                    return Alarm(index: index);
+                    return AlarmWidget(index: index);
                   },
                 ),
               ),

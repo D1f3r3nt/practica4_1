@@ -17,6 +17,11 @@ class AlarmsData {
     return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   }
 
+  int get id {
+    return int.parse(
+        '${time.hour.toString().padLeft(2, '0')}${time.minute.toString().padLeft(2, '0')}');
+  }
+
   static AlarmsData decode(String encoded) {
     List<String> values = encoded.split(_token);
     List<String> time = values[0].split(':');

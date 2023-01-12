@@ -38,7 +38,7 @@ class TimeProvider extends ChangeNotifier {
     Preferences.times = AlarmsData.encodeList(_times);
   }
 
-  selectTime(BuildContext context) async {
+  Future<AlarmsData?> selectTime(BuildContext context) async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
@@ -51,7 +51,7 @@ class TimeProvider extends ChangeNotifier {
       },
     );
 
-    if (newTime == null) return;
+    if (newTime == null) return null;
 
     final newAlarm = AlarmsData(time: newTime, enable: true);
 
@@ -60,5 +60,7 @@ class TimeProvider extends ChangeNotifier {
     save();
 
     notifyListeners();
+
+    return newAlarm;
   }
 }

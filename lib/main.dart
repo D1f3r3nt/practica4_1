@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica4_1/pages/home_page.dart';
 import 'package:practica4_1/preferences/preferences.dart';
+import 'package:practica4_1/provider/alarm_notification.dart';
 import 'package:practica4_1/provider/time_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,9 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => TimeProvider()),
+        ChangeNotifierProvider(
+          create: (context) => AlarmNotification(),
+        )
       ],
       child: const MyApp(),
     );
