@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../providers/providers.dart';
 import 'widgets.dart';
 
+/// Clase dedicada a la parte extensible de abajo
 class DraggableBottom extends StatelessWidget {
   const DraggableBottom({
     Key? key,
@@ -16,6 +17,7 @@ class DraggableBottom extends StatelessWidget {
     final _alarmProvider =
         Provider.of<AlarmNotification>(context, listen: false);
 
+    /// Configuramos los limites y la parte visual
     return DraggableScrollableSheet(
       initialChildSize: 0.2,
       minChildSize: 0.2,

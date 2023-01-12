@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Clase dedicada a personalizar el feedback que se le mostrara al usuario
 class CustomFeedback {
+  /// Feedback de Snackbar de error, con su estilo por defecto
   static void showErrSnackbar(String message, BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Row(
@@ -17,6 +19,7 @@ class CustomFeedback {
     ));
   }
 
+  /// Feedback dedicada a la alerta, con su estilo por defecto
   static void showAlert(String title, String message, BuildContext context) {
     showDialog(
         context: context,

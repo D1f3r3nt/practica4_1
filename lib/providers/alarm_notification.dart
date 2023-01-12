@@ -11,6 +11,7 @@ import '../models/models.dart';
 class AlarmNotification extends ChangeNotifier {
   static final _alarmNotification = FlutterLocalNotificationsPlugin();
 
+  /// Función para hacer la inicialización de las notificaciones y de la alarma
   Future<void> initialize() async {
     AndroidAlarmManager.initialize();
 
@@ -31,6 +32,7 @@ class AlarmNotification extends ChangeNotifier {
     await _alarmNotification.initialize(settings);
   }
 
+  /// Configuarmos las nontificaciones
   static Future<NotificationDetails> _notifoicationDetails() async {
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
@@ -54,6 +56,7 @@ class AlarmNotification extends ChangeNotifier {
     );
   }
 
+  /// Preparamos para mostrar la notificacion
   static void _showNotification({
     required int id,
     required String title,
@@ -63,6 +66,7 @@ class AlarmNotification extends ChangeNotifier {
     await _alarmNotification.show(id, title, body, details);
   }
 
+  /// Metodo para preparar la alarma
   setAlarm({required AlarmsData alarmsData}) async {
     await AndroidAlarmManager.oneShotAt(
       getTime(alarmsData.time),
@@ -75,10 +79,12 @@ class AlarmNotification extends ChangeNotifier {
     );
   }
 
+  /// Metodo para quitar la alarma en caso de haverla deshabilitado
   removeAlarm({required AlarmsData alarmsData}) async {
     await AndroidAlarmManager.cancel(alarmsData.id);
   }
 
+  /// Funcion para calcular si la alarma ha de sonar el dia de hoy o mañana debido a su hora
   DateTime getTime(TimeOfDay timeOfDay) {
     DateTime _now = DateTime.now();
     if (_now.hour > timeOfDay.hour ||
@@ -94,6 +100,7 @@ class AlarmNotification extends ChangeNotifier {
     );
   }
 
+  /// funcion para reproducir el sonido de alarma durante 10s
   static void play() {
     FlutterRingtonePlayer.playAlarm(volume: 0.5, looping: false);
     Timer(const Duration(seconds: 10), () {

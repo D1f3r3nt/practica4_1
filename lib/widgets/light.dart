@@ -2,13 +2,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Clase dedicada a la luz de los segundos
 class Light extends StatelessWidget {
   final int seconds;
   const Light({required this.seconds});
 
   @override
   Widget build(BuildContext context) {
+    /// Calculamos el angulo del punto, del calculo se obtiene la cantidad en radianes
     final angle = (-pi * (seconds / -60)) * 2;
+
+    /// Preparamos la posicion y rotacion
     return Transform.rotate(
       angle: angle,
       child: Transform.translate(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:feature_discovery/feature_discovery.dart';
 
+/// Clase dedicada a prepara la Informacion que se mostrara
+/// en el modo de Discovery
 class InfoDiscovery extends StatelessWidget {
   InfoDiscovery(
       {required this.child,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../providers/providers.dart';
 
+/// Clase dedicada a la hora que sale en formato de texto
 class ClockTime extends StatelessWidget {
   const ClockTime({super.key});
 
@@ -30,11 +31,13 @@ class ClockTime extends StatelessWidget {
     );
   }
 
+  /// Formateador de la hora
   String _hour(BuildContext context) {
     var _hour = Provider.of<TimeProvider>(context).hour;
     return _hour.toString().padLeft(2, '0');
   }
 
+  /// Formateador de los minutos
   String _minute(BuildContext context) {
     var _minute = Provider.of<TimeProvider>(context).minute;
     return _minute.toString().padLeft(2, '0');

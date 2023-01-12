@@ -7,10 +7,9 @@ class TimeProvider extends ChangeNotifier {
   DateTime _currentTime;
   List<AlarmsData> _times = AlarmsData.decodeList(Preferences.times);
 
-  final String KEY = '<-->';
-
   TimeProvider() : _currentTime = DateTime.now();
 
+  /// Getters para controlar el formato en que sale la info
   List<AlarmsData> get times {
     return _times;
   }
@@ -27,20 +26,26 @@ class TimeProvider extends ChangeNotifier {
     return _currentTime.second.toInt();
   }
 
+  /// Funcion para actualizar el tiempo
   updateTime() {
     _currentTime = DateTime.now();
 
+    /**
+     * Funcion para que no se actualice la pagina, mientras se construyen los builds
+     */
     Future.delayed(const Duration(seconds: 1), () {
       notifyListeners();
     });
   }
 
+  /// Funcion para guardar
   save() {
     Preferences.times = AlarmsData.encodeList(_times);
 
     notifyListeners();
   }
 
+  /// Funcion para crear una nueva alarma
   Future<AlarmsData?> selectTime(BuildContext context) async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,

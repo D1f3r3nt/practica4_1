@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../providers/providers.dart';
 import 'widgets.dart';
 
+/// Clase dedicada al reloj grafico
 class Clock extends StatelessWidget {
   const Clock({
     Key? key,
@@ -15,7 +16,6 @@ class Clock extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          /*  */
           Container(
             decoration: const BoxDecoration(
               shape: BoxShape.circle,

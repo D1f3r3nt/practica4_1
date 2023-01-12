@@ -1,16 +1,25 @@
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'pages/pages.dart';
 import 'preferences/preferences.dart';
 import 'providers/providers.dart';
 
 void main() async {
+  /// Inicializacion general
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Para evitar que la pantalla se voltee
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  /// Inicializacion de las preferencias
   await Preferences.init();
   runApp(const AppState());
 }
 
+/// Nivel para los Providers
 class AppState extends StatelessWidget {
   const AppState({super.key});
 
@@ -34,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Clock',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {

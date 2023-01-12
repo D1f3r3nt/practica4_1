@@ -6,6 +6,7 @@ import '../preferences/preferences.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 
+/// Usamos Stateful para el Discovery
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      /// Comprobamos si es la primera vez que entra
       if (Preferences.firstTime) {
         FeatureDiscovery.discoverFeatures(
             context, <String>['new', 'trash', 'info']);
@@ -58,14 +60,17 @@ class _HomePageState extends State<HomePage> {
           title: 'Eliminar',
           child: IconButton(
             onPressed: () {
+              /// Miramos si hay alguna alerta deshabilitada, sino mostramos error
               if (!data.times.any((element) => !element.enable)) {
                 CustomFeedback.showErrSnackbar(
                     'No hay nada para borrar', context);
                 return;
               }
 
+              /// Quitamos todas las deshabilitadas
               data.times.removeWhere((element) => !element.enable);
 
+              /// Guardamos
               data.save();
             },
             icon: const Icon(FontAwesomeIcons.trash),
@@ -86,6 +91,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+
+        /// Creamos un repetidor que nos refresque la pagina cada segundo, mediante un Stream
         child: StreamBuilder(
           stream: Stream.periodic(
             const Duration(seconds: 1),
