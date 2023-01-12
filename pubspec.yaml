@@ -31,7 +31,6 @@ environment:
 dependencies:
   android_alarm_manager_plus: ^2.1.0
   cupertino_icons: ^1.0.2
-  equatable: ^2.0.5
   feature_discovery: ^0.14.1
   flutter:
     sdk: flutter
