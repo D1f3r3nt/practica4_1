@@ -6,6 +6,7 @@ import 'package:practica4_1/widgets/alarm_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/alarm_notification.dart';
+import 'info_discovery.dart';
 import 'new-time.dart';
 
 class DraggableBottom extends StatelessWidget {
@@ -43,9 +44,16 @@ class DraggableBottom extends StatelessWidget {
                   itemCount: provider.times.length + 1,
                   itemBuilder: (context, index) {
                     if (provider.times.length == index) {
-                      return NewTime(
-                        provider: provider,
-                        alarmNotification: _alarmProvider,
+                      return InfoDiscovery(
+                        description:
+                            'Aqui podremos poner todas las alarmas a nuestro gusto',
+                        id: 'new',
+                        title: 'Alarmas',
+                        below: false,
+                        child: NewTime(
+                          provider: provider,
+                          alarmNotification: _alarmProvider,
+                        ),
                       );
                     }
                     return AlarmWidget(index: index);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:practica4_1/models/alarms_data.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/alarm_notification.dart';
@@ -25,41 +24,45 @@ class _AlarmWidgetState extends State<AlarmWidget> {
   Widget build(BuildContext context) {
     final provider = Provider.of<TimeProvider>(context);
     notification.initialize();
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ListTile(
-        title: Text(
-          provider.times[widget.index].timeFormatted,
-          style: const TextStyle(color: Colors.white70, fontFamily: 'Future'),
+    try {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: ListTile(
+          title: Text(
+            provider.times[widget.index].timeFormatted,
+            style: const TextStyle(color: Colors.white70, fontFamily: 'Future'),
+          ),
+          leading: (provider.times[widget.index].enable)
+              ? const Icon(
+                  Icons.access_time_outlined,
+                  color: Colors.white70,
+                )
+              : const Icon(
+                  FontAwesomeIcons.xmark,
+                  color: Colors.white70,
+                ),
+          trailing: Switch(
+            value: provider.times[widget.index].enable,
+            activeColor: const Color.fromARGB(255, 255, 248, 53),
+            inactiveThumbColor: const Color.fromARGB(255, 11, 11, 44),
+            onChanged: (value) async {
+              setState(() {
+                provider.times[widget.index].enable = value;
+                provider.save();
+              });
+              if (value) {
+                notification.setAlarm(alarmsData: provider.times[widget.index]);
+              } else {
+                notification.removeAlarm(
+                    alarmsData: provider.times[widget.index]);
+              }
+            },
+          ),
         ),
-        leading: (provider.times[widget.index].enable)
-            ? const Icon(
-                Icons.access_time_outlined,
-                color: Colors.white70,
-              )
-            : const Icon(
-                FontAwesomeIcons.trashCan,
-                color: Colors.white70,
-              ),
-        trailing: Switch(
-          value: provider.times[widget.index].enable,
-          activeColor: const Color.fromARGB(255, 255, 248, 53),
-          inactiveThumbColor: const Color.fromARGB(255, 11, 11, 44),
-          onChanged: (value) async {
-            setState(() {
-              provider.times[widget.index].enable = value;
-              provider.save();
-            });
-            if (value) {
-              notification.setAlarm(alarmsData: provider.times[widget.index]);
-            } else {
-              notification.removeAlarm(
-                  alarmsData: provider.times[widget.index]);
-            }
-          },
-        ),
-      ),
-    );
+      );
+    } catch (e) {
+      print(e.toString());
+    }
+    return Container();
   }
 }

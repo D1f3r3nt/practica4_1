@@ -1,3 +1,4 @@
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:practica4_1/pages/home_page.dart';
 import 'package:practica4_1/preferences/preferences.dart';
@@ -38,7 +39,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => FeatureDiscovery(
+              recordStepsInSharedPreferences: false,
+              child: HomePage(),
+            ),
       },
       theme: ThemeData(fontFamily: 'TextFuture'),
     );

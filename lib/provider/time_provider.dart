@@ -36,6 +36,8 @@ class TimeProvider extends ChangeNotifier {
 
   save() {
     Preferences.times = AlarmsData.encodeList(_times);
+
+    notifyListeners();
   }
 
   Future<AlarmsData?> selectTime(BuildContext context) async {
@@ -55,11 +57,13 @@ class TimeProvider extends ChangeNotifier {
 
     final newAlarm = AlarmsData(time: newTime, enable: true);
 
+    _times.removeWhere((element) =>
+        element.time.hour == newAlarm.time.hour &&
+        element.time.minute == newAlarm.time.minute);
+
     _times.add(newAlarm);
 
     save();
-
-    notifyListeners();
 
     return newAlarm;
   }
